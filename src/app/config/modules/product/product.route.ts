@@ -7,4 +7,8 @@ const  router = express.Router()
 
 router.post('/create-products', ProductController.createProduct)
 
+router.get('/', ProductController.getAllStudent)
+
+router.get('/:productId', ProductController.getSingleStudent )
+
 export const productRoute = router
