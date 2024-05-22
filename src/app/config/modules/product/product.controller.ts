@@ -42,9 +42,11 @@ const getSingleStudent = async (req: Request, res: Response) => {
 
     try {
 
-        const { productId } = req.params;
+        const productId = req.params.productId;
+        console.log(productId)
 
         const result = await ProductService.getSingleProductsFromDB(productId)
+        console.log(result)
         res.status(200).json({
             success: true,
             message: "Products fetched successfully!",
@@ -56,8 +58,31 @@ const getSingleStudent = async (req: Request, res: Response) => {
 
 }
 
+
+const getUpdatedProduct = async (req : Request,res : Response) => {
+    const productId = req.params.productId
+    const updatedData = req.body
+
+    try {
+        const updatedProduct = await ProductService.getUpdatedProductFromDB(productId,updatedData)
+        console.log(updatedProduct)
+        if(!updatedProduct){
+            return res.status(404).send({message : 'Product not found'})
+        }
+        // res.status(200).send(updatedData)
+        res.status(200).json({
+            success: true,
+            message: "Products updated successfully!",
+            data: updatedProduct
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
 export const ProductController = {
     createProduct,
     getAllStudent,
-    getSingleStudent
+    getSingleStudent,
+    getUpdatedProduct
 }

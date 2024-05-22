@@ -5,7 +5,7 @@ export type Variant = {
 
 export type Inventory = {
     quantity : Number;
-    isStock : Boolean;
+    inStock : Boolean;
 }
 export type Product = {
     name: String,

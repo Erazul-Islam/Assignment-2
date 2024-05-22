@@ -1,5 +1,6 @@
 [
     {
+      "id": "1",
       "name": "Wireless Mouse",
       "description": "Ergonomic wireless mouse with adjustable DPI settings.",
       "price": 29.99,
@@ -21,6 +22,7 @@
       }
     },
     {
+      "id": "2",
       "name": "Bluetooth Speaker",
       "description": "Portable Bluetooth speaker with high-fidelity sound and long battery life.",
       "price": 59.99,
@@ -42,6 +44,7 @@
       }
     },
     {
+      "id": "3",
       "name": "Yoga Mat",
       "description": "Eco-friendly yoga mat with non-slip surface.",
       "price": 24.99,
@@ -63,6 +66,7 @@
       }
     },
     {
+      "id": "4",
       "name": "Running Shoes",
       "description": "Lightweight running shoes with breathable mesh upper.",
       "price": 79.99,
@@ -88,6 +92,7 @@
       }
     },
     {
+      "id": "5",
       "name": "Electric Kettle",
       "description": "Stainless steel electric kettle with auto shut-off feature.",
       "price": 39.99,
@@ -109,6 +114,7 @@
       }
     },
     {
+      "id": "5",
       "name": "Gaming Keyboard",
       "description": "Mechanical gaming keyboard with RGB backlight.",
       "price": 89.99,
@@ -130,6 +136,7 @@
       }
     },
     {
+      "id": "6",
       "name": "Smart Watch",
       "description": "Smart watch with heart rate monitor and GPS.",
       "price": 129.99,
@@ -151,6 +158,7 @@
       }
     },
     {
+      "id": "7",
       "name": "Noise-Cancelling Headphones",
       "description": "Wireless noise-cancelling headphones with 20-hour battery life.",
       "price": 199.99,
@@ -172,6 +180,7 @@
       }
     },
     {
+      "id": "8",
       "name": "Smartphone",
       "description": "Latest model smartphone with 128GB storage and dual cameras.",
       "price": 699.99,
@@ -193,6 +202,7 @@
       }
     },
     {
+      "id": "9",
       "name": "Coffee Maker",
       "description": "Programmable coffee maker with 12-cup capacity.",
       "price": 49.99,

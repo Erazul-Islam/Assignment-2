@@ -14,14 +14,24 @@ const getAllProductsFromDB = async () => {
 }
 
 const getSingleProductsFromDB = async (id: string) => {
-    console.log(id)
-    const result = await ProductModel.findOne({ id })
+    const result = await ProductModel.findOne({ _id: id })
+    console.log(result)
     return result
+}
+
+const getUpdatedProductFromDB = async (id: string, updatedData: Product) => {
+    try {
+        const updatedProduct = await ProductModel.findByIdAndUpdate(id, updatedData, { new: true })
+        return updatedProduct
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
 export const ProductService = {
     createProductIntoDB,
     getAllProductsFromDB,
-    getSingleProductsFromDB
+    getSingleProductsFromDB,
+    getUpdatedProductFromDB
 }
