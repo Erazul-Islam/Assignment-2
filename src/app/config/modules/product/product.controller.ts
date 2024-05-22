@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, query } from "express";
 import { ProductService } from "./product.service";
 
 
@@ -59,15 +59,15 @@ const getSingleStudent = async (req: Request, res: Response) => {
 }
 
 
-const getUpdatedProduct = async (req : Request,res : Response) => {
+const getUpdatedProduct = async (req: Request, res: Response) => {
     const productId = req.params.productId
     const updatedData = req.body
 
     try {
-        const updatedProduct = await ProductService.getUpdatedProductFromDB(productId,updatedData)
+        const updatedProduct = await ProductService.getUpdatedProductFromDB(productId, updatedData)
         console.log(updatedProduct)
-        if(!updatedProduct){
-            return res.status(404).send({message : 'Product not found'})
+        if (!updatedProduct) {
+            return res.status(404).send({ message: 'Product not found' })
         }
         // res.status(200).send(updatedData)
         res.status(200).json({
@@ -75,14 +75,54 @@ const getUpdatedProduct = async (req : Request,res : Response) => {
             message: "Products updated successfully!",
             data: updatedProduct
         })
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 }
+
+const deleteSingleProduct = async (req: Request, res: Response) => {
+
+    try {
+
+        const productId = req.params.productId;
+        console.log(productId)
+
+        const result = await ProductService.deletedFromDB(productId)
+        console.log(result)
+        res.status(200).json({
+            success: true,
+            message: "Products deleted successfully!",
+            data: result
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
+}
+
+
+const searchProductsController = async (req: Request, res: Response): Promise<void> => {
+    const query = req.query.q as string;
+
+    try {
+        const products = await ProductService.searchProducts(query);
+        res.status(200).json({
+            success: true,
+            message: "Products matching search term 'iphone' fetched successfully",
+            data: products
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 
 export const ProductController = {
     createProduct,
     getAllStudent,
     getSingleStudent,
-    getUpdatedProduct
+    getUpdatedProduct,
+    deleteSingleProduct,
+    searchProductsController
 }

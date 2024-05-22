@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose"; 
+import { Schema, model } from "mongoose";
 import { Inventory, Product, Variant } from "./product.interface";
 
 
@@ -19,7 +19,11 @@ const ProductSchema = new Schema<Product>({
     category: { type: String },
     tags: [String],
     variants: [variantSchema],
-    inventory: inventorySchema
+    inventory: inventorySchema,
+    isDeleted: {
+        type: Boolean,
+        default: false
+    }
 })
 
 

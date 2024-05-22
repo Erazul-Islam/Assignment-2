@@ -13,4 +13,8 @@ router.get('/:productId', ProductController.getSingleStudent)
 
 router.put('/:productId', ProductController.getUpdatedProduct)
 
+router.delete('/:productId', ProductController.deleteSingleProduct)
+
+router.get('/', ProductController.searchProductsController)
+
 export const productRoute = router

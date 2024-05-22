@@ -28,10 +28,35 @@ const getUpdatedProductFromDB = async (id: string, updatedData: Product) => {
     }
 }
 
+const deletedFromDB = async (id: string) => {
+    const result = await ProductModel.updateOne({ _id: id }, { isDeleted: true })
+    console.log(result)
+    return result
+}
+
+const searchProducts = async (query: string) => {
+    try {
+        const products = await ProductModel.find({
+            $or: [
+                [
+                    { name: { $regex: query, $options: 'i' } },
+                    { category: { $regex: query, $options: 'i' } },
+                    { description: { $regex: query, $options: 'i' } }
+                ]
+            ]
+        }).exec()
+        return products
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 export const ProductService = {
     createProductIntoDB,
     getAllProductsFromDB,
     getSingleProductsFromDB,
-    getUpdatedProductFromDB
+    getUpdatedProductFromDB,
+    deletedFromDB,
+    searchProducts
 }

@@ -1,11 +1,11 @@
 export type Variant = {
-    type : String;
-    value : String
+    type: String;
+    value: String
 }
 
 export type Inventory = {
-    quantity : Number;
-    inStock : Boolean;
+    quantity: Number;
+    inStock: Boolean;
 }
 export type Product = {
     name: String,
@@ -14,5 +14,6 @@ export type Product = {
     category: String,
     tags: String[],
     variants: Variant[]
-    inventory: Inventory
+    inventory: Inventory,
+    isDeleted: Boolean
 }
