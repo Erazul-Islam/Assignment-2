@@ -1,5 +1,5 @@
 import express from 'express'
-import { ProductController } from './product.controller'
+import { ProductController} from './product.controller'
 
 const router = express.Router()
 
@@ -7,9 +7,9 @@ const router = express.Router()
 
 router.post('/create-products', ProductController.createProduct)
 
-router.get('/', ProductController.getAllStudent)
+// router.get('/', ProductController.getAllProduct)
 
-router.get('/:productId', ProductController.getSingleStudent)
+router.get('/:productId', ProductController.getSingleProduct)
 
 router.put('/:productId', ProductController.getUpdatedProduct)
 

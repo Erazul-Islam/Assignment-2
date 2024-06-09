@@ -13,6 +13,7 @@ const inventorySchema = new Schema<Inventory>({
 });
 
 const ProductSchema = new Schema<Product>({
+    // id: { type: String },
     name: { type: String },
     description: { type: String },
     price: { type: Number },
@@ -27,4 +28,5 @@ const ProductSchema = new Schema<Product>({
 })
 
 
-export const ProductModel = model<Product>('Product', ProductSchema)
+export const ProductModel = model<Product>('product', ProductSchema)
+// export const OrderModel = model<Order>('Order', orderSchema)

@@ -3,7 +3,6 @@ import { ProductModel } from "./product.model";
 
 
 const createProductIntoDB = async (product: Product) => {
-
     const result = await ProductModel.create(product)
     return result
 }
@@ -19,9 +18,9 @@ const getSingleProductsFromDB = async (id: string) => {
     return result
 }
 
-const getUpdatedProductFromDB = async (id: string, updatedData: Product) => {
+const getUpdatedProductFromDB = async (id: string, payload: Partial<Product>) => {
     try {
-        const updatedProduct = await ProductModel.findByIdAndUpdate(id, updatedData, { new: true })
+        const updatedProduct = await ProductModel.findOneAndUpdate({ _id: id }, payload, { new: true })
         return updatedProduct
     } catch (error) {
         console.log(error)
@@ -29,27 +28,27 @@ const getUpdatedProductFromDB = async (id: string, updatedData: Product) => {
 }
 
 const deletedFromDB = async (id: string) => {
-    const result = await ProductModel.updateOne({ _id: id }, { isDeleted: true })
+    const result = await ProductModel.deleteOne({ _id: id }, { isDeleted: true })
     console.log(result)
     return result
 }
 
-const searchProducts = async (query: string) => {
-    try {
-        const products = await ProductModel.find({
-            $or: [
-                [
-                    { name: { $regex: query, $options: 'i' } },
-                    { category: { $regex: query, $options: 'i' } },
-                    { description: { $regex: query, $options: 'i' } }
-                ]
-            ]
-        }).exec()
-        return products
-    } catch (error) {
-        console.log(error);
+
+const searchProduct = async (searchTerm: string) => {
+    const searchAbleFields = ["name", "tags", "category"];
+    let query = {};
+    if (searchTerm) {
+        query = {
+            $or:
+                searchAbleFields.map((field) => ({ [field]: { $regex: searchTerm, $options: "i" } }))
+
+        };
+        console.log(query)
     }
-}
+
+    const result = await ProductModel.find(query);
+    return result;
+};
 
 
 export const ProductService = {
@@ -58,5 +57,10 @@ export const ProductService = {
     getSingleProductsFromDB,
     getUpdatedProductFromDB,
     deletedFromDB,
-    searchProducts
+    searchProduct,
 }
+
+// export const OrderService = {
+//     createOrder,
+//     getOrders
+// }
