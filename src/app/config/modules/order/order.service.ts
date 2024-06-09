@@ -13,7 +13,24 @@ const getAllOrderFromDB = async (email: string) => {
     return result
 }
 
+const retriveOrders = async (searchTerm: string) => {
+    const searchAbleFields = ["email"];
+    let query = {};
+    if (searchTerm) {
+        query = {
+            $or:
+                searchAbleFields.map((field) => ({ [field]: { $regex: searchTerm, $options: "i" } }))
+
+        };
+        console.log(query)
+    }
+
+    const result = await orderModel.find(query);
+    return result;
+};
+
 export const orderService = {
     createOrderIntoDB,
-    getAllOrderFromDB
+    getAllOrderFromDB,
+    retriveOrders
 }
