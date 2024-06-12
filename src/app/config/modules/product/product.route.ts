@@ -5,7 +5,7 @@ const router = express.Router()
 
 // will call controller function
 
-router.post('/create-products', ProductController.createProduct)
+router.post('/', ProductController.createProduct)
 
 // router.get('/', ProductController.getAllProduct)
 
