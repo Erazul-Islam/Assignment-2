@@ -59,8 +59,3 @@ export const ProductService = {
     deletedFromDB,
     searchProduct,
 }
-
-// export const OrderService = {
-//     createOrder,
-//     getOrders
-// }

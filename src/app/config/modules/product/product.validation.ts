@@ -1,27 +1,3 @@
-// import { z } from 'zod';
-
-// const TvariantSchema = z.object({
-//     type: z.string(),
-//     value: z.string()
-// })
-
-// const TInventorySchema = z.object({
-//     quantity: z.number(),
-//     inStock: z.boolean()
-// })
-
-// const TProductSchema = z.object({
-//     id: z.string(),
-//     name: z.string(),
-//     price: z.number(),
-//     category: z.string(),
-//     tags: z.array(z.string()),
-//     description: z.string(),
-//     variants: z.array(TvariantSchema),
-//     inventory: TInventorySchema,
-//     isDeleted: z.boolean()
-// })
-
 import { z } from "zod";
 
 const VariantSchema = z.object({

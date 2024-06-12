@@ -1,11 +1,27 @@
 import { Request, Response } from "express";
 import { validation } from "./order.validation";
 import { orderService } from "./order.service";
+import { ProductService } from "../product/product.service";
+import { ProductModel } from "../product/product.model";
 
 
 const orderCreate = async (req: Request, res: Response) => {
     try {
         const newOrder = req.body.orders;
+        // const quantity = newOrder.quantity
+        // console.log(quantity)
+        // const product = await ProductService.getAllProductsFromDB()
+        // const z = product[0]._id
+        // const string = z.toString()
+
+
+        // const singleproduct = ProductService.getSingleProductsFromDB(string)
+        // console.log(singleproduct)
+
+        // // if (string === newOrder.productId) {
+        // //     return singleproduct
+        // // }
+
         const zodvalidate = validation.parse(newOrder);
         const result = await orderService.createOrderIntoDB(zodvalidate);
         res.status(200).json({
@@ -22,34 +38,12 @@ const orderCreate = async (req: Request, res: Response) => {
     }
 };
 
-const searchProductsController = async (req: Request, res: Response) => {
-    const { searchTerm } = req.query
-    console.log(searchTerm)
-    if (searchTerm) {
-        try {
-            const result = await orderService.retriveOrders(searchTerm as string)
-            res.status(200).json({
-                success: true,
-                message: 'Search product',
-                data: result
-            })
-        }
-        catch (err) {
-            res.status(500).json({
-                success: false,
-                message: " search something went wrong",
-                error: err,
-            });
-        }
-    } else {
-        getAllOrder(req, res)
-    }
-}
-
 const getAllOrder = async (req: Request, res: Response) => {
     try {
         const { email } = req.query
+
         const result = await orderService.getAllOrderFromDB(email as string);
+        console.log(result)
         res.status(200).json({
             success: true,
             message: "Order fetched successfully!",
@@ -58,7 +52,7 @@ const getAllOrder = async (req: Request, res: Response) => {
     } catch (error) {
         res.status(200).json({
             success: false,
-            message: "Order does not fetched successfully",
+            message: "Order not found",
             error: error,
         });
     }
@@ -67,5 +61,7 @@ const getAllOrder = async (req: Request, res: Response) => {
 export const orderController = {
     orderCreate,
     getAllOrder,
-    searchProductsController
 }
+
+
+// const x = [{id: new ObjectId('6665e57ff1c1bda65adcbd92'),q:'b'}]
