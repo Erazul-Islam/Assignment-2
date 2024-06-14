@@ -15,7 +15,6 @@ const product_validation_1 = require("./product.validation");
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const product = req.body.product;
-        console.log(req.body);
         const validation = product_validation_1.validationProduct.parse(product);
         console.log(validation);
         // will call service func to send this data

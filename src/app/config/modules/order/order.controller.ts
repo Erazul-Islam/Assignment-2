@@ -8,19 +8,6 @@ import { ProductModel } from "../product/product.model";
 const orderCreate = async (req: Request, res: Response) => {
     try {
         const newOrder = req.body.orders;
-        // const quantity = newOrder.quantity
-        // console.log(quantity)
-        // const product = await ProductService.getAllProductsFromDB()
-        // const z = product[0]._id
-        // const string = z.toString()
-
-
-        // const singleproduct = ProductService.getSingleProductsFromDB(string)
-        // console.log(singleproduct)
-
-        // // if (string === newOrder.productId) {
-        // //     return singleproduct
-        // // }
 
         const zodvalidate = validation.parse(newOrder);
         const result = await orderService.createOrderIntoDB(zodvalidate);
