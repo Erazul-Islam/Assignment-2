@@ -6,7 +6,6 @@ import { validationProduct } from "./product.validation";
 const createProduct = async (req: Request, res: Response) => {
     try {
         const product = req.body.product
-        console.log(req.body)
         const validation = validationProduct.parse(product)
         console.log(validation)
 
